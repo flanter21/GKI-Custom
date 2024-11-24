@@ -96,6 +96,7 @@ jobs:
         # BUILD_CONFIG=common/build.config.gki.aarch64 build/config.sh savedefconfig
         # LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
         export ARCH=arm64
+        sed -i 's/CONFIG_CMDLINE="stack_depot_disable=on kasan.stacktrace=off kvm-arm.mode=protected cgroup_disable=pressure"/CONFIG_CMDLINE="stack_depot_disable=on kasan.stacktrace=off kvm-arm.mode=nvhe cgroup_disable=pressure"' common/arch/arm64/configs/kalama_gki_defconfig # unprotect KVM
         sed -i 's/CONFIG_DEBUG_INFO_BTF=y/CONFIG_DEBUG_INFO_BTF=n/' common/arch/arm64/configs/kalama_gki_defconfig
         sed -i 's/CONFIG_DEBUG_INFO_BTF_MODULES=y/CONFIG_DEBUG_INFO_BTF_MODULES=n/' common/arch/arm64/configs/kalama_gki_defconfig
         echo "will do build/config.sh"
