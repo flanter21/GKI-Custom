@@ -93,7 +93,7 @@ jobs:
         ls build
         echo "head -n 10 common/Makefile"
         head -n 10 common/Makefile
-        sed -i 's/CONFIG_CMDLINE="stack_depot_disable=on kasan.stacktrace=off kvm-arm.mode=protected cgroup_disable=pressure"/CONFIG_CMDLINE="stack_depot_disable=on kasan.stacktrace=off kvm-arm.mode=nvhe cgroup_disable=pressure"' common/arch/arm64/configs/kalama_gki_defconfig # unprotect KVM
+        sed -i 's/CONFIG_CMDLINE="stack_depot_disable=on kasan.stacktrace=off kvm-arm.mode=protected cgroup_disable=pressure"/CONFIG_CMDLINE="stack_depot_disable=on kasan.stacktrace=off kvm-arm.mode=nvhe cgroup_disable=pressure"/' common/arch/arm64/configs/kalama_gki_defconfig # unprotect KVM
         sed -i 's/CONFIG_DEBUG_INFO_BTF=y/CONFIG_DEBUG_INFO_BTF=n/' common/arch/arm64/configs/kalama_gki_defconfig
         sed -i 's/CONFIG_DEBUG_INFO_BTF_MODULES=y/CONFIG_DEBUG_INFO_BTF_MODULES=n/' common/arch/arm64/configs/kalama_gki_defconfig
         echo "will do build/config.sh"
