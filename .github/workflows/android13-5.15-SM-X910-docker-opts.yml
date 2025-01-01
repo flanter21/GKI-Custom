@@ -158,6 +158,10 @@ jobs:
       with:
         name: Image-${{ inputs.version_name }}_${{ inputs.os_patch_level }}
         draft: true
+        body: |
+          OS Version = ${{ inputs.os_version }}
+          Enable LXC, Docker, unlock pKVM = ${{ inputs.custom }}
+          Enable KernelSU = ${{ inputs.kernelsu }}
         files: |
           $GITHUB_WORKSPACE/output/${{ inputs.version_name }}_${{ inputs.os_patch_level }}-boot.img
           $GITHUB_WORKSPACE/output/${{ inputs.version_name }}_${{ inputs.os_patch_level }}-boot-lz4.img
