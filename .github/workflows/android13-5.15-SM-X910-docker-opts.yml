@@ -59,6 +59,8 @@ jobs:
         # it seems the revision with the least diff with is actually this one from Android 13:
         # https://github.com/KDEFFALT/kernel_common-5.15/commit/09996673e3139a6d86fc3d95c852b3a020e2fe5f
         repo init --depth 1 -u https://android.googlesource.com/kernel/manifest -b common-android13-5.15-${{ inputs.os_patch_level }}
+        # remove prebuilt/tradefed as it clones lots of unnecessary stuff that kills the gh actions
+        sed -i '/prebuilts\/tradefed/d' ~/.repo/manifest.xml
         repo sync
 
     - name: Replace pure GKI by SM-X910 GKI
