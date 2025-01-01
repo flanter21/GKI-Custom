@@ -31,6 +31,11 @@ on:
         type: boolean
         description: >
           Enable KernelSU
+      release:
+        required: true
+        type: boolean
+        description: >
+          Upload draft release?
 
 jobs:
   build:
@@ -146,6 +151,17 @@ jobs:
       with:
         name: Image-${{ inputs.version_name }}_${{ inputs.os_patch_level }}
         path: ./output/*
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      if: ${{ inputs.release == true }}
+      with:
+        name: Image-${{ inputs.version_name }}_${{ inputs.os_patch_level }}
+        draft: true
+        files: |
+          $GITHUB_WORKSPACE/output/${{ inputs.version_name }}_${{ inputs.os_patch_level }}-boot.img
+          $GITHUB_WORKSPACE/output/${{ inputs.version_name }}_${{ inputs.os_patch_level }}-boot-lz4.img
+          $GITHUB_WORKSPACE/output/${{ inputs.version_name }}_${{ inputs.os_patch_level }}-boot-gz.img
 
 #    - name: Upload AnyKernel3
 #      uses: actions/upload-artifact@v4
